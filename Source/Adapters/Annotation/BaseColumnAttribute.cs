@@ -7,7 +7,7 @@ using System.Text;
 namespace Havel.Adapters.Annotation
 {
 	[AttributeUsage( AttributeTargets.Property )]
-	public abstract class BaseColumnAttribute
+	public abstract class BaseColumnAttribute : Attribute
 	{
 
 	}

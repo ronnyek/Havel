@@ -9,15 +9,17 @@ namespace Havel.Cache
 	using System;
 	using System.Collections.Generic;
 
+	using Havel.Adapters;
+
 	internal sealed class TypeCache
 	{
-		private static readonly TypeCache m_instance = new TypeCache();
+		private static readonly Lazy<TypeCache> m_instance = new Lazy<TypeCache>( () => new TypeCache() );
 
 		private Dictionary<Type, TypeMap> m_stack;
 
 		internal static TypeCache Instance
 		{
-			get { return ( m_instance ); }
+			get { return ( m_instance.Value ); }
 		}
 
 		internal Dictionary<Type, TypeMap> Stack
@@ -43,7 +45,7 @@ namespace Havel.Cache
 
 		internal static TypeMap GetType( Type t )
 		{
-			return ( Instance.Stack [ t ] );
+			return ( Instance.Stack[ t ] );
 		}
 
 		internal static void RemoveType( Type t )

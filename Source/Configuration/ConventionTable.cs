@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Havel.Adapters.Annotation
+namespace Havel.Configuration
 {
-	public class AnnotationAdapter
+	class ConventionTable
 	{
 	}
 }
