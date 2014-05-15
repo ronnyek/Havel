@@ -102,9 +102,9 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Identifier format to use when creating SQL statements.  Default is <see cref="IdentifierFormat.Bracketed"/>
+		/// Identifier format to use when creating SQL statements.  Default is <see cref="DelimiterFormat.Bracketed"/>
 		/// </summary>
-		public static IdentifierFormat UseIdentifiers
+		public static DelimiterFormat UseIdentifiers
 		{
 			get { return ( Instance.m_configuration.UseIdentifiers ); }
 		}
@@ -196,7 +196,7 @@ namespace Havel.Configuration
 		/// Gets an instance of <see cref="P:NamingConvention"/>.
 		/// </summary>
 		/// <returns></returns>
-		public Havel.Configuration.NamingConvention GetNamingConvention()
+		public static Havel.Configuration.NamingConvention GetNamingConvention()
 		{
 			return ( Settings.NamingConvention.Assembly.CreateInstance( Settings.NamingConvention.FullName ) as Havel.Configuration.NamingConvention );
 		}

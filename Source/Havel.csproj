@@ -46,9 +46,10 @@
     <Compile Include="Adapters\Annotation\AnnotationAdapter.cs" />
     <Compile Include="Adapters\Annotation\BaseColumnAttribute.cs" />
     <Compile Include="Adapters\Annotation\ColumnAttribute.cs" />
+    <Compile Include="Adapters\Annotation\PersistentAttribute.cs" />
     <Compile Include="Adapters\Fluent\FluentAdapter.cs" />
     <Compile Include="Adapters\IAdapter.cs" />
-    <Compile Include="Adapters\IdentifierFormat.cs" />
+    <Compile Include="Adapters\DelimiterFormat.cs" />
     <Compile Include="Adapters\IdentityFormat.cs" />
     <Compile Include="Adapters\TypeMap.cs" />
     <Compile Include="BasePersistenceProvider.cs" />

@@ -1,7 +1,7 @@
 ﻿/***********************************************************************
 <copyright file="IdentifierFormat.cs" company="Ikarii">
-	Copyright © Ikarii, LLC. 2012 All rights reserved.
-	Author: Shawn Hall
+    Copyright © Ikarii 2014 All rights reserved.
+    Author: Shawn Hall
 </copyright>
 ***********************************************************************/
 namespace Havel.Adapters
@@ -9,7 +9,7 @@ namespace Havel.Adapters
 	/// <summary>
 	/// Describes the formatting for identifiers used to escape table and column names.
 	/// </summary>
-	public enum IdentifierFormat
+	public enum DelimiterFormat
 	{
 		/// <summary>
 		/// Quoted identifer, pads name in quotes.

@@ -109,12 +109,12 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Identifier format to use when creating SQL statements.  Default is <see cref="IdentifierFormat.Bracketed"/>
+		/// Identifier format to use when creating SQL statements.  Default is <see cref="DelimiterFormat.Bracketed"/>
 		/// </summary>
-		[ConfigurationProperty( "useIdentifiers", DefaultValue = IdentifierFormat.Bracketed, IsRequired = false )]
-		public IdentifierFormat UseIdentifiers
+		[ConfigurationProperty( "useIdentifiers", DefaultValue = DelimiterFormat.Bracketed, IsRequired = false )]
+		public DelimiterFormat UseIdentifiers
 		{
-			get { return ( IdentifierFormat )this[ "useIdentifiers" ]; }
+			get { return ( DelimiterFormat )this[ "useIdentifiers" ]; }
 			set { this[ "useIdentifiers" ] = value; }
 		}
 

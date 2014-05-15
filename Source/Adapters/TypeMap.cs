@@ -19,6 +19,9 @@ namespace Havel.Adapters
 	/// </summary>
 	public class TypeMap
 	{
-
+		/// <summary>
+		/// Gets the <see cref="T:Type" /> of object the <see cref="T:TypeMap" /> is mapping.
+		/// </summary>
+		public Type Type { get; protected set; }
 	}
 }

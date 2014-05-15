@@ -37,7 +37,7 @@ namespace Havel.Extensions.Internal
 		/// <returns></returns>
 		public static string AddSqlIdentifier( this String s )
 		{
-			return ( Common.PopulateIdentifiers( s, Settings.UseIdentifiers ) );
+			return ( Common.DelimitIdentifier( s, Settings.UseIdentifiers ) );
 		}
 	}
 }

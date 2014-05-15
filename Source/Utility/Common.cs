@@ -18,20 +18,20 @@ namespace Havel.Utility
 	using Havel.Extensions.Internal;
 	using Havel.Exceptions;
 
-	internal static class Common
+	public static class Common
 	{
 		/// <summary>
-		/// Used to ensure database objects are properly identified to avoid problems where table or column names 
+		/// Used to ensure database objects are properly delimited to avoid problems where table or column names 
 		/// are reserved words.
 		/// </summary>
-		/// <param name="source">Source string to create mark up with identifiers.</param>
-		/// <param name="format">Specific identifier format to use.</param>
-		/// <returns>String of source with appropriate identifers</returns>
-		internal static string PopulateIdentifiers( string source, IdentifierFormat format = IdentifierFormat.None )
+		/// <param name="source">Identifier to mark up with delimiter.</param>
+		/// <param name="format">Specific delimiter format to use.</param>
+		/// <returns>String identifier with appropriate delimiter.</returns>
+		public static string DelimitIdentifier( string source, DelimiterFormat format = DelimiterFormat.None )
 		{
-			if( format.Equals( IdentifierFormat.Bracketed ) )
+			if( format.Equals( DelimiterFormat.Bracketed ) )
 				return ( "[{0}]".F( source ) );
-			else if( format.Equals( IdentifierFormat.Quoted ) )
+			else if( format.Equals( DelimiterFormat.Quoted ) )
 				return ( "\"{0}\"".F( source ) );
 			else
 				return ( source );
@@ -44,13 +44,11 @@ namespace Havel.Utility
 		/// <param name="iface">Interface to find.</param>
 		/// <returns>Boolean value where true indicates that test implements iface.</returns>
 		/// <remarks>Will return true if test actually is iface.</remarks>
-		internal static bool ImplementsInterface( Type test, Type iface )
+		public static bool ImplementsInterface( Type test, Type iface )
 		{
-			if( test.GetInterface( iface.Name ).Null() && !test.IsInterface && test.NotEquals( iface ) )
-			{
-				return ( false );
-			}
-			return ( true );
+			if ( test == null ) throw ( new ArgumentNullException( "test" ) );
+			if ( iface == null ) throw ( new ArgumentNullException( "iface" ) );
+			return ( iface.IsAssignableFrom( test ) && !test.IsInterface && test.NotEquals( iface ) );
 		}
 
 		/// <summary>
@@ -59,7 +57,7 @@ namespace Havel.Utility
 		/// <param name="field">Object field to retrieve the attribute from.</param>
 		/// <param name="attribute">Type of attribute to locate and return.</param>
 		/// <returns>Instance of attribute or null if none found.</returns>
-		internal static object GetCustomFieldAttribute( PropertyInfo field, Type attribute )
+		public static object GetCustomFieldAttribute( PropertyInfo field, Type attribute )
 		{
 			var attributes = field.GetCustomAttributes( attribute, false );
 			return ( attributes.Length > 0 ? attributes[ 0 ] : null );
@@ -71,7 +69,7 @@ namespace Havel.Utility
 		/// <typeparam name="T">Type of attribute to locate and return.</typeparam>
 		/// <param name="field">Object field to retrieve the attribute from.</param>
 		/// <returns>Instance of attribute or null if none found.</returns>
-		internal static T GetCustomFieldAttribute<T>( PropertyInfo field )
+		public static T GetCustomFieldAttribute<T>( PropertyInfo field )
 		{
 			return ( ( T )GetCustomFieldAttribute( field, typeof( T ) ) );
 		}
@@ -82,7 +80,7 @@ namespace Havel.Utility
 		/// <param name="obj">Type to retrieve the attribute from.</param>
 		/// <param name="attribute">Type of attribute to locate and return.</param>
 		/// <returns>Instance of attribute or null if none found.</returns>
-		internal static object GetCustomObjectAttribute( Type obj, Type attribute )
+		public static object GetCustomObjectAttribute( Type obj, Type attribute )
 		{
 			var attributes = obj.GetCustomAttributes( attribute, false );
 			return ( attributes.Length > 0 ? attributes[ 0 ] : null );
@@ -94,7 +92,7 @@ namespace Havel.Utility
 		/// <typeparam name="T">Type of attribute to locate and return.</typeparam>
 		/// <param name="obj">Type to retrieve the attribute from.</param>
 		/// <returns>Instance of attribute or null if none found.</returns>
-		internal static T GetCustomObjectAttribute<T>( Type obj )
+		public static T GetCustomObjectAttribute<T>( Type obj )
 		{
 			return ( ( T )GetCustomObjectAttribute( obj, typeof( T ) ) );
 		}
@@ -107,7 +105,7 @@ namespace Havel.Utility
 		/// <param name="soft">If true, GetIdentityFormat will not throw an exception and will instead return IdentityFormat.Unknown.</param>
 		/// <returns>IdentityFormat appropriate for specified Type.</returns>
 		/// <exception cref="MappyingException">Thrown if no acceptable IdentityFormat is found for the specified idtype</exception>
-		internal static IdentityFormat GetIdentityFormat( Type idtype, bool soft = false )
+		public static IdentityFormat GetIdentityFormat( Type idtype, bool soft = false )
 		{
 			IdentityFormat result = IdentityFormat.Integer;
 			if( idtype.Equals( typeof( System.Int32 ) ) || idtype.Equals( typeof( System.Int64 ) ) )
@@ -134,12 +132,12 @@ namespace Havel.Utility
 		}
 
 
-		internal static PropertyInfo GetProperty<TYPE>( Expression<Func<TYPE, object>> expression )
+		public static PropertyInfo GetProperty<TYPE>( Expression<Func<TYPE, object>> expression )
 		{
 			return ( ( PropertyInfo )GetMemberExpression( expression ).Member );
 		}
 
-		internal static MemberExpression GetMemberExpression<TYPE, MAP>( Expression<Func<TYPE, MAP>> expression )
+		public static MemberExpression GetMemberExpression<TYPE, MAP>( Expression<Func<TYPE, MAP>> expression )
 		{
 			MemberExpression memberExpression = null;
 			if( expression.Body.NodeType == ExpressionType.Convert )
@@ -173,7 +171,7 @@ namespace Havel.Utility
 
 		public static string Decrypt( string source, string password ) { return ( Crypt( source, password, false, "TripleDES" ) ); }
 
-		internal static string Crypt( string source, string password, bool encrypt, string alg )
+		public static string Crypt( string source, string password, bool encrypt, string alg )
 		{
 			byte[] salt = new byte[] { 0x26, 0x19, 0x81, 0x4E, 0xA0, 0x6D, 0x95, 0x34, 0x26, 0x75, 0x64, 0x05, 0xF6 };
 
