@@ -4,7 +4,7 @@
     Author: Shawn Hall
 </copyright>
 ***********************************************************************/
-namespace Havel.Adapters.Annotation
+namespace Havel.Mapping.Annotation
 {
 
 	using System;
@@ -12,10 +12,10 @@ namespace Havel.Adapters.Annotation
 	using Havel.Configuration;
 
 	/// <summary>
-	/// Required class attribute for objects to be used in all of Havel's operations.
+	/// Required class-level attribute for objects using the <see cref="T:Havel.Mapping.Annotation.AnnotationStrategy"/> for mapping objects.
 	/// </summary>
 	[System.AttributeUsage( AttributeTargets.Class, AllowMultiple = false )]
-	public class PersistentAttribute
+	public class PersistentAttribute : Attribute
 	{
 		/// <summary>
 		///Gets or Sets the Name of the table the persistent object is stored to.
@@ -23,8 +23,9 @@ namespace Havel.Adapters.Annotation
 		public string Name { get; set; }
 
 		/// <summary>
-		/// <see cref="T:Convention"/> to use in determining database table and column naming conventions. If this property is left blank
-		/// Havel will use the default <see cref="T:Convention"/> found in <see cref="ConventionTable.Instance.NamingConvention"/>. 
+		/// <see cref="T:Havel.Configuration.NamingConvention"/> to use in determining database table and column naming conventions. If this property is left blank
+		/// Havel will use the default <see cref="T:Havel.Configuration.NamingConvention"/> 
+		/// found in <see cref="Havel.Configuration.ConventionTable.Instance.NamingConvention"/>. 
 		/// </summary>
 		public NamingConvention NamingConvention { get; set; }
 
@@ -47,11 +48,14 @@ namespace Havel.Adapters.Annotation
 		/// Instantiates the <see cref="T:PersistentAttribute" /> with the table name and naming convention defined.
 		/// </summary>
 		/// <param name="table">Name of the table the persistent object is stored to.</param>
-		/// <param name="convention"><see cref="T:Convention"/> to use in determining database table and column names.</param>
+		/// <param name="convention"><see cref="T:Havel.Configuration.NamingConvention"/> to use in determining database table and column names.</param>
 		public PersistentAttribute( string table, string convention )
 		{
 			this.Name = table;
-			this.NamingConvention = Activator.CreateInstance( Type.GetType( convention ) ) as NamingConvention;
+			var type = Type.GetType( convention );
+			if( type == null ) 
+				throw ( new ArgumentException( String.Format( "Could not instantiate type {0}. Please ensure that convention is a fully qualified name.", convention ), "convention" ) );
+			this.NamingConvention = Activator.CreateInstance( type ) as NamingConvention;
 		}
 	}
 }

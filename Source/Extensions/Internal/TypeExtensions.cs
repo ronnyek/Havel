@@ -12,7 +12,7 @@ namespace Havel.Extensions.Internal
 	using System.Text;
 
 	using Havel.Utility;
-	using Havel.Adapters;
+	using Havel.Mapping;
 
 	public static class TypeExtensions
 	{

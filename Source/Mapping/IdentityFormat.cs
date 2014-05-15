@@ -4,7 +4,7 @@
 	Author: Shawn Hall
 </copyright>
 ***********************************************************************/
-namespace Havel.Adapters
+namespace Havel.Mapping
 {
 	/// <summary>
 	/// Describes the <see cref="T:Type"/> that represents the identity column of an object.

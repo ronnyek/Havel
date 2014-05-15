@@ -1,6 +1,6 @@
 ﻿/***********************************************************************
 <copyright file="HavelConfigurationSection.cs" company="Ikarii">
-    Copyright © Ikarii, LLC. 2012 All rights reserved.
+    Copyright © Ikarii 2014 All rights reserved.
     Author: Shawn Hall
 </copyright>
 ***********************************************************************/
@@ -11,14 +11,14 @@ namespace Havel.Configuration
 	using System.Configuration;
 	using System.Reflection;
 
-	using Havel.Adapters;
+	using Havel.Mapping;
 	using Havel.Extensions.Internal;
 
 	public class HavelConfigurationSection : ConfigurationSection
 	{
 		/// <summary>
-		/// Default <see cref="T:System.Data.DbConnection"/> that Persist will use when one is not
-		/// explicitly set.
+		/// Default <see cref="T:System.Data.DbConnection"/> that Havel will use when one is not explicitly
+		/// set for the initialized <see cref="T:Havel.Providers.IPersistentProvider"/>.
 		/// </summary>
 		[ConfigurationProperty( "defaultConnection", DefaultValue = "", IsRequired = false )]
 		public string DefaultConnection
@@ -28,7 +28,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Default <see cref="T:Ikarii.Lib.Data.Alpaca.Logging.ILoggingProvider"/> Persist will use
+		/// Default <see cref="T:Ikarii.Lib.Data.Alpaca.Logging.ILoggingProvider"/> Havel will use
 		/// for logging events.
 		/// </summary>
 		[ConfigurationProperty( "loggingProvider", DefaultValue = null, IsRequired = false )]
@@ -79,7 +79,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Defaulty type of logger to use for all message types.
+		/// Default logger to use for all message types if one isn't specified.
 		/// </summary>
 		[ConfigurationProperty( "defaultLogger", DefaultValue = "", IsRequired = false )]
 		public string DefaultLogger
@@ -109,7 +109,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Identifier format to use when creating SQL statements.  Default is <see cref="DelimiterFormat.Bracketed"/>
+		/// Identifier format to use when creating SQL statements.  Default is <see cref="Havel.Mapping.DelimiterFormat.Bracketed"/>
 		/// </summary>
 		[ConfigurationProperty( "useIdentifiers", DefaultValue = DelimiterFormat.Bracketed, IsRequired = false )]
 		public DelimiterFormat UseIdentifiers
@@ -132,7 +132,7 @@ namespace Havel.Configuration
 		/// Default <see cref="T:Mapping.IMappingProvider"/> to use when one isn't explicitly set in an operation.
 		/// Default value is <see cref="T:Mapping.AttributeMappingProvider"/>.
 		/// </summary>
-		[ConfigurationProperty( "defaultMappingProvider", DefaultValue = typeof( Adapters.Annotation.AnnotationAdapter ), IsRequired = false )]
+		[ConfigurationProperty( "defaultMappingProvider", DefaultValue = typeof( Mapping.Annotation.AnnotationStrategy ), IsRequired = false )]
 		public Type DefaultMappingProvider
 		{
 			get { return ( Type )this[ "defaultMappingProvider" ]; }

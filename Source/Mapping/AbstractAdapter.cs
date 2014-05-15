@@ -4,13 +4,13 @@
     Author: Shawn Hall
 </copyright>
 ***********************************************************************/
-namespace Havel.Adapters
+namespace Havel.Mapping
 {
 	using System;
 
 	using Havel.Utility;
 
-	public abstract class AbstractAdapter : IAdapter
+	public abstract class AbstractAdapter : IMappingStrategy
 	{
 		/// <summary>
 		/// The <see cref="T:TypeMap"/> being constructed.
@@ -30,13 +30,13 @@ namespace Havel.Adapters
 		/// <param name="t"><see cref="T:Type"/> to create.</param>
 		/// <returns><see cref="T:IAdapter" /></returns>
 		/// <exception cref="T:System.Exception" />
-		public static IAdapter GetInstance( Type t )
+		public static IMappingStrategy GetInstance( Type t )
 		{
-			if( !Common.ImplementsInterface( t, typeof( IAdapter ) ) )
+			if( !Common.ImplementsInterface( t, typeof( IMappingStrategy ) ) )
 			{
 				throw new Exception( "Type must implement IAdapter or extend AbstractAdapter to be created." );
 			}
-			return ( t.Assembly.CreateInstance( t.FullName ) as IAdapter );
+			return ( t.Assembly.CreateInstance( t.FullName ) as IMappingStrategy );
 		}
 
 		/// <summary>

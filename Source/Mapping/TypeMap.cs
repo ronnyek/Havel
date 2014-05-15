@@ -5,7 +5,7 @@
 </copyright>
 ***********************************************************************/
 
-namespace Havel.Adapters
+namespace Havel.Mapping
 {
 	using System;
 	using System.Collections.Generic;
@@ -14,13 +14,12 @@ namespace Havel.Adapters
 	using System.Linq.Expressions;
 
 	/// <summary>
-	/// A <see cref="T:TypeMap" /> represents a relationship map between a class <see cref="T:Type" /> and the database.  The <see cref="T:TypeMap" />
-	/// creates a "map" of the defined <see cref="T:Type" /> and is used by Persist to describe the object in database operations. 
+	/// A <see cref="T:Havel.Mapping.TypeMap" /> is a representation of a class that defines how properties in a class relate to a relational database objects.  
 	/// </summary>
 	public class TypeMap
 	{
 		/// <summary>
-		/// Gets the <see cref="T:Type" /> of object the <see cref="T:TypeMap" /> is mapping.
+		/// Gets the <see cref="T:System.Type" /> of object the <see cref="T:Havel.Mapping.TypeMap" /> is mapping.
 		/// </summary>
 		public Type Type { get; protected set; }
 	}

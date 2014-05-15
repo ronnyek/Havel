@@ -11,7 +11,7 @@ namespace Havel.Configuration
 	using System.Configuration;
 	using System.Reflection;
 
-	using Havel.Adapters;
+	using Havel.Mapping;
 	using Havel.Extensions.Internal;
 	using Havel.Logging;
 
@@ -187,9 +187,9 @@ namespace Havel.Configuration
 		/// Returns an instance of <see cref="P:DefaultAdapter"/>.
 		/// </summary>
 		/// <returns></returns>
-		public Adapters.IAdapter GetDefaultAdapter()
+		public Mapping.IMappingStrategy GetDefaultAdapter()
 		{
-			return ( Adapters.AbstractAdapter.GetInstance( DefaultMappingProvider ) );
+			return ( Mapping.AbstractAdapter.GetInstance( DefaultMappingProvider ) );
 		}
 
 		/// <summary>

@@ -9,7 +9,7 @@ namespace Havel.Cache
 	using System;
 	using System.Collections.Generic;
 
-	using Havel.Adapters;
+	using Havel.Mapping;
 
 	internal sealed class TypeCache
 	{

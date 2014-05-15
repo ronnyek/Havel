@@ -13,7 +13,7 @@ namespace Havel.Utility
 	using System.Reflection;
 	using System.Security.Cryptography;
 
-	using Havel.Adapters;
+	using Havel.Mapping;
 	using Havel.Extensions;
 	using Havel.Extensions.Internal;
 	using Havel.Exceptions;
@@ -107,7 +107,8 @@ namespace Havel.Utility
 		/// <exception cref="MappyingException">Thrown if no acceptable IdentityFormat is found for the specified idtype</exception>
 		public static IdentityFormat GetIdentityFormat( Type idtype, bool soft = false )
 		{
-			IdentityFormat result = IdentityFormat.Integer;
+			var result = IdentityFormat.Integer;
+
 			if( idtype.Equals( typeof( System.Int32 ) ) || idtype.Equals( typeof( System.Int64 ) ) )
 			{
 				result = IdentityFormat.Integer;
@@ -126,17 +127,30 @@ namespace Havel.Utility
 				else
 					throw new MappingException(
 						String.Format( System.Globalization.CultureInfo.InvariantCulture,
-						"Primary Key is an unknown datatype.  Primary Keys must be integers, guids or strings." ) );
+						"Identity Format could not be identified. Type of identity was: {0}. Valid types are Int32, Int64, System.Guid or String",
+						idtype.Name ) );
 			}
 			return ( result );
 		}
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TYPE"></typeparam>
+		/// <param name="expression"></param>
+		/// <returns></returns>
 		public static PropertyInfo GetProperty<TYPE>( Expression<Func<TYPE, object>> expression )
 		{
 			return ( ( PropertyInfo )GetMemberExpression( expression ).Member );
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TYPE"></typeparam>
+		/// <typeparam name="MAP"></typeparam>
+		/// <param name="expression"></param>
+		/// <returns></returns>
 		public static MemberExpression GetMemberExpression<TYPE, MAP>( Expression<Func<TYPE, MAP>> expression )
 		{
 			MemberExpression memberExpression = null;
@@ -158,15 +172,26 @@ namespace Havel.Utility
 			return memberExpression;
 		}
 
+		/// <summary>
+		/// Determines if Havel can treat the specified type as a database column or if it should map
+		/// the type as a related object. Elemental types are classified as any Primitive:
+		/// <see cref="System.Boolean" />, <see cref="System.Byte" />, <see cref="System.SByte" />, <see cref="System.Char" />, 
+		/// <see cref="System.Decimal" />, <see cref="System.Double" />, <see cref="System.Single" />, <see cref="System.Int32" />, 
+		/// <see cref="System.UInt32" />, <see cref="System.Int64" />, <see cref="System.UInt64" />, <see cref="System.Object" />, 
+		/// <see cref="System.Int16" />, <see cref="System.UInt16" />, or <see cref="System.Xml"/> (stored as xml data type), or 
+		/// <see cref="System.Drawing"/> (stored as binary data type), or <see cref="System.Byte[]"/>.
+		/// </summary>
+		/// <param name="t"></param>
+		/// <returns></returns>
 		public static bool IsElemental( Type t )
 		{
-			return ( t.IsValueType ||
+			return ( t.IsPrimitive ||
 				t.Namespace.Equals( "System.Xml" ) ||
 				t.Namespace.Equals( "System.Drawing" ) ||
-				t.Equals( typeof( Byte[] ) ) ||
-				t.Equals( typeof( String ) ) );
+				t.Equals( typeof( Byte[] ) ) );
 		}
 
+		/*
 		public static string Encrypt( string source, string password ) { return ( Crypt( source, password, true, "TripleDES" ) ); }
 
 		public static string Decrypt( string source, string password ) { return ( Crypt( source, password, false, "TripleDES" ) ); }
@@ -209,6 +234,6 @@ namespace Havel.Utility
 					ms.Close();
 				}
 			}
-		}
+		}*/
 	}
 }

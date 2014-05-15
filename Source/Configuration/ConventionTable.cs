@@ -10,17 +10,16 @@ namespace Havel.Configuration
 
 	using Havel.Configuration;
 	using Havel.Cache;
-	using Havel.Adapters;
+	using Havel.Mapping;
 
 	/// <summary>
-	/// The convention table stores the current convention being used by Persist, and allows for manually
-	/// generated <see cref="T:TypeMap"/>s to be added to the TypeMap cache.  This allows the developer to 
-	/// add Types that have no existing maps usuable by availiable providers.  ConventionTable is a singleton and
+	/// The convention table stores the current convention being used by Havel, and allows for manually
+	/// generated <see cref="T:Havel.Mapping.TypeMap"/>s to be added to the <see cref="T:Havel.Cache.TypeCache"/>.  This allows 
+	/// <see cref="T:Havel.Mapping.TypeMap"/>s to be added that have no usuable mapping strategies.  ConventionTable is a singleton and
 	/// can only have one instance per process.
 	/// </summary>
 	public sealed class ConventionTable
 	{
-
 		private static readonly Lazy<ConventionTable> m_instance = new Lazy<ConventionTable>( () => new ConventionTable() );
 		private NamingConvention m_convention;
 

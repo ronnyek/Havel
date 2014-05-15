@@ -4,7 +4,7 @@
     Author: Shawn Hall
 </copyright>
 ***********************************************************************/
-namespace Havel.Adapters
+namespace Havel.Mapping
 {
 	/// <summary>
 	/// Describes the formatting for identifiers used to escape table and column names.

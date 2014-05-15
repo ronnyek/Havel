@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Havel.Adapters.Fluent
+namespace Havel.Mapping.Fluent
 {
 	class FluentAdapter
 	{

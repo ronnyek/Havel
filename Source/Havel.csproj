@@ -42,16 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\AbstractAdapter.cs" />
-    <Compile Include="Adapters\Annotation\AnnotationAdapter.cs" />
-    <Compile Include="Adapters\Annotation\BaseColumnAttribute.cs" />
-    <Compile Include="Adapters\Annotation\ColumnAttribute.cs" />
-    <Compile Include="Adapters\Annotation\PersistentAttribute.cs" />
-    <Compile Include="Adapters\Fluent\FluentAdapter.cs" />
-    <Compile Include="Adapters\IAdapter.cs" />
-    <Compile Include="Adapters\DelimiterFormat.cs" />
-    <Compile Include="Adapters\IdentityFormat.cs" />
-    <Compile Include="Adapters\TypeMap.cs" />
+    <Compile Include="Mapping\AbstractAdapter.cs" />
+    <Compile Include="Mapping\Annotation\AnnotationStrategy.cs" />
+    <Compile Include="Mapping\Annotation\BaseColumnAttribute.cs" />
+    <Compile Include="Mapping\Annotation\ColumnAttribute.cs" />
+    <Compile Include="Mapping\Annotation\PersistentAttribute.cs" />
+    <Compile Include="Mapping\Fluent\FluentAdapter.cs" />
+    <Compile Include="Mapping\IMappingStrategy.cs" />
+    <Compile Include="Mapping\DelimiterFormat.cs" />
+    <Compile Include="Mapping\IdentityFormat.cs" />
+    <Compile Include="Mapping\TypeMap.cs" />
     <Compile Include="BasePersistenceProvider.cs" />
     <Compile Include="Cache\TypeCache.cs" />
     <Compile Include="Configuration\ConventionTable.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Extensions\Internal\StringExtensions.cs" />
     <Compile Include="Extensions\Internal\TypeExtensions.cs" />
     <Compile Include="Logging\EventType.cs" />
+    <Compile Include="Mapping\TypeSurveyor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\MsSqlPersistenceProvider.cs" />
     <Compile Include="Utility\Common.cs" />

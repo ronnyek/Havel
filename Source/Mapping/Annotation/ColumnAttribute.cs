@@ -4,7 +4,7 @@
     Author: Shawn Hall
 </copyright>
 ***********************************************************************/
-namespace Havel.Adapters.Annotation
+namespace Havel.Mapping.Annotation
 {
 	class ColumnAttribute
 	{
