@@ -44,13 +44,21 @@
   <ItemGroup>
     <Compile Include="Mapping\AbstractAdapter.cs" />
     <Compile Include="Mapping\Annotation\AnnotationStrategy.cs" />
-    <Compile Include="Mapping\Annotation\BaseColumnAttribute.cs" />
+    <Compile Include="Mapping\Annotation\BaseAnnotationAttribute.cs" />
+    <Compile Include="Mapping\Annotation\OneToManyAttribute.cs" />
+    <Compile Include="Mapping\Annotation\OneToOneAttribute.cs" />
+    <Compile Include="Mapping\Annotation\ManyToManyAttribute.cs" />
+    <Compile Include="Mapping\Annotation\ReferenceAttribute.cs" />
+    <Compile Include="Mapping\Annotation\ForeignKeyAttribute.cs" />
+    <Compile Include="Mapping\Annotation\PrimaryKeyAttribute.cs" />
     <Compile Include="Mapping\Annotation\ColumnAttribute.cs" />
     <Compile Include="Mapping\Annotation\PersistentAttribute.cs" />
-    <Compile Include="Mapping\Fluent\FluentAdapter.cs" />
+    <Compile Include="Mapping\Fluent\FluentStrategy.cs" />
+    <Compile Include="Mapping\IdentityGeneratorType.cs" />
     <Compile Include="Mapping\IMappingStrategy.cs" />
     <Compile Include="Mapping\DelimiterFormat.cs" />
     <Compile Include="Mapping\IdentityFormat.cs" />
+    <Compile Include="Mapping\MappingBehavior.cs" />
     <Compile Include="Mapping\TypeMap.cs" />
     <Compile Include="BasePersistenceProvider.cs" />
     <Compile Include="Cache\TypeCache.cs" />
@@ -64,6 +72,8 @@
     <Compile Include="Extensions\Internal\TypeExtensions.cs" />
     <Compile Include="Logging\EventType.cs" />
     <Compile Include="Mapping\TypeSurveyor.cs" />
+    <Compile Include="Mapping\Xml\HamlStrategy.cs" />
+    <Compile Include="Mapping\Xml\HbmlStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\MsSqlPersistenceProvider.cs" />
     <Compile Include="Utility\Common.cs" />

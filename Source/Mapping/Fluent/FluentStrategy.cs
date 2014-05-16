@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿/***********************************************************************
+<copyright file="FluentStrategy.cs" company="Ikarii">
+    Copyright © Ikarii 2014 All rights reserved.
+    Author: Shawn Hall
+</copyright>
+***********************************************************************/
 namespace Havel.Mapping.Fluent
 {
-	class FluentAdapter
+	public class FluentStrategy
 	{
 	}
 }

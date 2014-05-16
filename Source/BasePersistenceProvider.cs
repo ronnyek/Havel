@@ -1,7 +1,7 @@
 ﻿/***********************************************************************
 <copyright file="BasePersistenceProvider.cs" company="Ikarii">
-	Copyright © Ikarii, LLC. 2009 All rights reserved.
-	Author: Shawn Hall
+    Copyright © Ikarii 2014 All rights reserved.
+    Author: Shawn Hall
 </copyright>
 ***********************************************************************/
 

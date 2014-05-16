@@ -1,5 +1,5 @@
 ﻿/***********************************************************************
-<copyright file="IdentifierFormat.cs" company="Ikarii">
+<copyright file="DelimiterFormat.cs" company="Ikarii">
     Copyright © Ikarii 2014 All rights reserved.
     Author: Shawn Hall
 </copyright>

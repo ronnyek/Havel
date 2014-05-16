@@ -18,7 +18,7 @@ namespace Havel.Configuration
 	{
 		/// <summary>
 		/// Default <see cref="T:System.Data.DbConnection"/> that Havel will use when one is not explicitly
-		/// set for the initialized <see cref="T:Havel.Providers.IPersistentProvider"/>.
+		/// defined during instantiation of a <see cref="T:Havel.Providers.IPersistentProvider"/>.
 		/// </summary>
 		[ConfigurationProperty( "defaultConnection", DefaultValue = "", IsRequired = false )]
 		public string DefaultConnection
@@ -28,7 +28,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Default <see cref="T:Ikarii.Lib.Data.Alpaca.Logging.ILoggingProvider"/> Havel will use
+		/// <see cref="T:Havel.Logging.ILoggingProvider"/> Havel will use
 		/// for logging events.
 		/// </summary>
 		[ConfigurationProperty( "loggingProvider", DefaultValue = null, IsRequired = false )]
@@ -39,7 +39,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Type of logger to use for trace data.
+		/// Logger Havel will use in the case of a <see cref="Havel.Logging.EventType.Trace"/> event.
 		/// </summary>
 		[ConfigurationProperty( "traceLogger", DefaultValue = "", IsRequired = false )]
 		public string TraceLogger
@@ -49,7 +49,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Type of logger to use for warnings.
+		/// Logger Havel will use in the case of a <see cref="Havel.Logging.EventType.Warn"/> event.
 		/// </summary>
 		[ConfigurationProperty( "warnLogger", DefaultValue = "", IsRequired = false )]
 		public string WarnLogger
@@ -59,7 +59,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Type of logger to use for errors.
+		/// Logger Havel will use in the case of a <see cref="Havel.Logging.EventType.Error"/> event.
 		/// </summary>
 		[ConfigurationProperty( "errorLogger", DefaultValue = "", IsRequired = false )]
 		public string ErrorLogger
@@ -69,7 +69,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Type of logger to use for fatal errors.
+		/// Logger Havel will use in the case of a <see cref="Havel.Logging.EventType.Fatal"/> event.
 		/// </summary>
 		[ConfigurationProperty( "fatalLogger", DefaultValue = "", IsRequired = false )]
 		public string FatalLogger
@@ -109,7 +109,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Identifier format to use when creating SQL statements.  Default is <see cref="Havel.Mapping.DelimiterFormat.Bracketed"/>
+		/// Delimiter to decorate identifiers with when creating SQL statements.  Default is <see cref="Havel.Mapping.DelimiterFormat.Bracketed"/>
 		/// </summary>
 		[ConfigurationProperty( "useIdentifiers", DefaultValue = DelimiterFormat.Bracketed, IsRequired = false )]
 		public DelimiterFormat UseIdentifiers
@@ -119,7 +119,7 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Default <see cref="T:Mapping.Convention"/> to use when generating undefined field and table names.
+		/// Default <see cref="T:Havel.Configuration.NamingConvention"/> to use for column and table names.
 		/// </summary>
 		[ConfigurationProperty( "namingConvention", DefaultValue = typeof( Havel.Configuration.NamingConvention ), IsRequired = false )]
 		public Type NamingConvention
@@ -129,19 +129,19 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Default <see cref="T:Mapping.IMappingProvider"/> to use when one isn't explicitly set in an operation.
-		/// Default value is <see cref="T:Mapping.AttributeMappingProvider"/>.
+		/// Default <see cref="T:Havel.Mapping.IMappingStrategy"/> to use when one isn't explicitly set in an operation.
+		/// Default value is <see cref="T:Havel.Mapping.Annotation.AnnotationStrategy"/>.
 		/// </summary>
-		[ConfigurationProperty( "defaultMappingProvider", DefaultValue = typeof( Mapping.Annotation.AnnotationStrategy ), IsRequired = false )]
-		public Type DefaultMappingProvider
+		[ConfigurationProperty( "defaultMappingStrategy", DefaultValue = typeof( Mapping.Annotation.AnnotationStrategy ), IsRequired = false )]
+		public Type DefaultMappingStrategy
 		{
-			get { return ( Type )this[ "defaultMappingProvider" ]; }
-			set { this[ "defaultMappingProvider" ] = value; }
+			get { return ( Type )this[ "defaultMappingStrategy" ]; }
+			set { this[ "defaultMappingStrategy" ] = value; }
 		}
 
 		/// <summary>
-		/// Default <see cref="T:IPersistenceProvider"/> to use when one isn't explicitly set in an operation.
-		/// Default is <see cref="T:MsSql.SqlPersistenceProvider"/>.
+		/// Default <see cref="T:Havel.Providers.IPersistenceProvider"/> to use when one isn't explicitly set in an operation.
+		/// Default is <see cref="T:Havel.Providers.MsSqlPersistenceProvider"/>.
 		/// </summary>
 		[ConfigurationProperty( "defaultPersistenceProvider", DefaultValue = typeof( Providers.MsSqlPersistenceProvider ), IsRequired = false )]
 		public Type DefaultPersistenceProvider
@@ -151,9 +151,10 @@ namespace Havel.Configuration
 		}
 
 		/// <summary>
-		/// Defines the folder which contains type maps usable by the <see cref="T:Mapping.XmlMappingProvider"/>.
+		/// Defines the folder which contains type maps usable by <see cref="T:Havel.Mapping.IMappingStrategy"/> classes in the
+		/// <see cref="N:Havel.Mapping.Xml"/> namespace. Default value is "maps".
 		/// </summary>
-		[ConfigurationProperty( "xmlMapFolder", DefaultValue = "Maps", IsRequired = false )]
+		[ConfigurationProperty( "xmlMapFolder", DefaultValue = "maps", IsRequired = false )]
 		public string XmlMapFolder
 		{
 			get { return ( string )this[ "xmlMapFolder" ]; }
