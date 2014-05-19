@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Mapping\AbstractAdapter.cs" />
     <Compile Include="Mapping\Annotation\AnnotationStrategy.cs" />
+    <Compile Include="Mapping\Annotation\RelationalBaseAttribute.cs" />
     <Compile Include="Mapping\Annotation\BaseAnnotationAttribute.cs" />
     <Compile Include="Mapping\Annotation\OneToManyAttribute.cs" />
     <Compile Include="Mapping\Annotation\OneToOneAttribute.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\MsSqlPersistenceProvider.cs" />
     <Compile Include="Utility\Common.cs" />
+    <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\Inflector.cs" />
   </ItemGroup>
   <ItemGroup />

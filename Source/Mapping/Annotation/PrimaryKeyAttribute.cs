@@ -8,6 +8,8 @@ namespace Havel.Mapping.Annotation
 {
 	using System;
 
+	using Havel.Utility;
+
 	[AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
 	public class PrimaryKeyAttribute : BaseAnnotationAttribute
 	{
@@ -20,6 +22,10 @@ namespace Havel.Mapping.Annotation
 		/// </remarks>
 		public object UnsavedValue { get; set; }
 
-		
+		public PrimaryKeyAttribute( string name = Constants.EMPTY_STRING, MappingBehavior behavior = MappingBehavior.Inherit, object unsavedValue = null )
+			: base( name: name, behavior: behavior )
+		{
+			this.UnsavedValue = unsavedValue;
+		}
 	}
 }
