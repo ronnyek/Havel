@@ -54,6 +54,7 @@
     <Compile Include="Mapping\Annotation\PrimaryKeyAttribute.cs" />
     <Compile Include="Mapping\Annotation\ColumnAttribute.cs" />
     <Compile Include="Mapping\Annotation\PersistentAttribute.cs" />
+    <Compile Include="Mapping\Cascade.cs" />
     <Compile Include="Mapping\Fluent\FluentStrategy.cs" />
     <Compile Include="Mapping\IdentityGeneratorType.cs" />
     <Compile Include="Mapping\IMappingStrategy.cs" />
